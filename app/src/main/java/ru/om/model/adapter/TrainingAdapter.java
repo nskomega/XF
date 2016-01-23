@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
         mTrainings = trainings;
     }
 
-    public void addFlower(Training training) {
+    public void addTraining(Training training) {
         mTrainings.add(training);
         notifyDataSetChanged();
     }
@@ -54,7 +53,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
     public class Holder extends RecyclerView.ViewHolder {
 
         public TextView mTitle, mText, mUrl;
-        public ImageView mImage;
+        //public ImageView mImage;
 
         public Holder(View itemView) {
             super(itemView);

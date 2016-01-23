@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
 
     @Override
     public void onFetchProgress(Training training) {
-        mTrainingAdapter.addFlower(training);
+        mTrainingAdapter.addTraining(training);
     }
 
     @Override

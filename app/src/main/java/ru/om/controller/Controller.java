@@ -26,7 +26,7 @@ public class Controller {
     }
 
     public void startFetching() {
-        mApiManager.getTrainengApi().getTraining(new Callback<String>() {
+        mApiManager.getTrainingApi().getTraining(new Callback<String>() {
             @Override
             public void success(String s, Response response) {
                 Log.d(TAG, "JSON :: " + s);
@@ -36,10 +36,9 @@ public class Controller {
 
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject object = array.getJSONObject(i);
-                        object.getJSONArray("data");
 
                         Training training = new Training.Builder()
-                                .setTitle(object.getString("title"))
+                                .setTitle(object.getString("status"))
                                 .setText(object.getString("text"))
                                 .setUrl(object.getString("v"))
 
