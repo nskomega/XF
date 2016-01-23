@@ -10,7 +10,7 @@ public class RestApiManager {
 
     private TrainingApi mTrainingApi;
 
-    public TrainingApi getFlowerApi() {
+    public TrainingApi getTrainengApi() {
 
         if (mTrainingApi == null) {
             GsonBuilder gson = new GsonBuilder();

@@ -16,13 +16,13 @@ public class Training {
 
         private String mUrl, mText, mPhoto, mTitle;
 
-        public Builder setCategory(String url) {
-            mUrl = url;
+        public Builder setText(String text) {
+            mText = text;
             return Builder.this;
         }
 
-        public Builder setInstructions(String text) {
-            mText = text;
+        public Builder setUrl(String url) {
+            mUrl = url;
             return Builder.this;
         }
 
@@ -31,7 +31,7 @@ public class Training {
         //     return Builder.this;
         //  }
 
-        public Builder setName(String title) {
+        public Builder setTitle(String title) {
             mTitle = title;
             return Builder.this;
         }
@@ -39,5 +39,7 @@ public class Training {
         public Training build() {
             return new Training(Builder.this);
         }
+
+
     }
 }

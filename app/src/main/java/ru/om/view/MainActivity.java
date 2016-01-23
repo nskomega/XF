@@ -17,7 +17,7 @@ import ru.om.controller.Controller;
 import ru.om.model.adapter.TrainingAdapter;
 import ru.om.model.pojo.Training;
 
-public class MainActivity extends AppCompatActivity implements Controller.FlowerCallbackListener {
+public class MainActivity extends AppCompatActivity implements Controller.TrainingCallbackListener {
 
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
