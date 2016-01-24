@@ -1,9 +1,10 @@
 package ru.om.model.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import ru.om.model.utilities.Constants;
 public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder> {
 
     public static String TAG = TrainingAdapter.class.getSimpleName();
+    private static Context context;
     public String nUrl;
     private List<Training> mTrainings;
 
@@ -36,6 +38,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false);
+        context = parent.getContext();
         return new Holder(row);
     }
 
@@ -69,9 +72,35 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
 
         @Override
         public void onClick(View v) {
-            Log.d(TAG, "Clicked: " + Constants.YOUTUBE_URL + nUrl);
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + nUrl));
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + nUrl));
+                    context.startActivity(intent);
+                    //newYouTubeIntent(context1, nUrl);
+                }
+            }, 0);
         }
     }
-}
 
+
+    /**
+     public static Intent newYouTubeIntent(PackageManager pm, String url) {
+     Intent intent;
+     if (url.length() == 11) {
+     // youtube video id
+     intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + url));
+     } else {
+     // url to video
+     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+     }
+     try {
+     if (pm.getPackageInfo("com.google.android.youtube", 0) != null) {
+     intent.setPackage("com.google.android.youtube");
+     }
+     } catch (PackageManager.NameNotFoundException e) {
+     }
+     return intent;
+    }
+     */
+}

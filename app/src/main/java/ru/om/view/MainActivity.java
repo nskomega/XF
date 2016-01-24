@@ -69,9 +69,7 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public void Progs(int x) {
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -79,9 +77,26 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
                 progressBar = (ProgressBar) findViewById(R.id.progressBar);
                 progressBar.setVisibility(View.INVISIBLE);
             }
-        }, 10000);
+        }, x);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Progs(10000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Progs(1000);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Progs(1000);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
