@@ -23,7 +23,7 @@ import ru.om.model.pojo.Training;
 public class MainActivity extends AppCompatActivity implements Controller.TrainingCallbackListener {
 
     private Toolbar mToolbar;
-    private RecyclerView mRecyclerView;
+    private RecyclerView mRV;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private List<Training> mTrainingList = new ArrayList<>();
     private TrainingAdapter mTrainingAdapter;
@@ -47,16 +47,15 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
     }
 
     private void configViews() {
-        mRecyclerView = (RecyclerView) this.findViewById(R.id.list);
+        mRV = (RecyclerView) this.findViewById(R.id.list);
         mSwipeRefreshLayout = (SwipeRefreshLayout) this.findViewById(R.id.swipe);
 
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-        mRecyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
+        mRV.setHasFixedSize(true);
+        mRV.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        mRV.setRecycledViewPool(new RecyclerView.RecycledViewPool());
 
         mTrainingAdapter = new TrainingAdapter(mTrainingList);
-        mRecyclerView.setAdapter(mTrainingAdapter);
-
+        mRV.setAdapter(mTrainingAdapter);
         mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent),
                 getResources().getColor(R.color.colorPrimary),
                 getResources().getColor(R.color.colorPrimaryDark));
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
                 progressBar = (ProgressBar) findViewById(R.id.progressBar);
                 progressBar.setVisibility(View.INVISIBLE);
             }
-        }, 3000);
+        }, 10000);
     }
 
 
@@ -126,3 +125,5 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
 
     }
 }
+
+

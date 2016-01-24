@@ -1,6 +1,9 @@
 package ru.om.model.adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +41,6 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
 
     @Override
     public void onBindViewHolder(Holder holder, final int position) {
-
         Training currentTraining = mTrainings.get(position);
         holder.mTitle.setText(currentTraining.mTitle);
         holder.mText.setText(currentTraining.mText);
@@ -52,7 +54,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
         return mTrainings.size();
     }
 
-    public class Holder extends RecyclerView.ViewHolder {
+    public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mTitle, mText, mUrl;
         public ImageView mImage;
 
@@ -62,6 +64,14 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
             mText = (TextView) itemView.findViewById(R.id.trainingText);
             //mUrl = (TextView) itemView.findViewById(R.id.trainingUrl);
             mImage = (ImageView) itemView.findViewById(R.id.trainingImage);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.d(TAG, "Clicked: " + Constants.YOUTUBE_URL + nUrl);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + nUrl));
         }
     }
 }
+

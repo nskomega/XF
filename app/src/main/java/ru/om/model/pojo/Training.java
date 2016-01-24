@@ -38,7 +38,5 @@ public class Training {
         public Training build() {
             return new Training(Builder.this);
         }
-
-
     }
 }
