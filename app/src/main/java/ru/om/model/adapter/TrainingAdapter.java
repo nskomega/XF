@@ -18,7 +18,7 @@ import ru.om.model.utilities.Constants;
 public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder> {
 
     public static String TAG = TrainingAdapter.class.getSimpleName();
-
+    public String nUrl;
     private List<Training> mTrainings;
 
     public TrainingAdapter(List<Training> trainings) {
@@ -32,20 +32,19 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false);
-
         return new Holder(row);
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(Holder holder, final int position) {
 
         Training currentTraining = mTrainings.get(position);
         holder.mTitle.setText(currentTraining.mTitle);
         holder.mText.setText(currentTraining.mText);
-        holder.mUrl.setText("https://www.youtube.com/watch?v=" + currentTraining.mUrl);
+        //holder.mUrl.setText(Constants.YOUTUBE_URL + currentTraining.mUrl);
         Picasso.with(holder.itemView.getContext()).load(Constants.PHOTO_URL_1 + currentTraining.mUrl + Constants.PHOTO_URL_2).into(holder.mImage);
+        nUrl = currentTraining.mUrl;
     }
 
     @Override
@@ -54,7 +53,6 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
     }
 
     public class Holder extends RecyclerView.ViewHolder {
-
         public TextView mTitle, mText, mUrl;
         public ImageView mImage;
 
@@ -62,7 +60,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.trainingTitle);
             mText = (TextView) itemView.findViewById(R.id.trainingText);
-            mUrl = (TextView) itemView.findViewById(R.id.trainingUrl);
+            //mUrl = (TextView) itemView.findViewById(R.id.trainingUrl);
             mImage = (ImageView) itemView.findViewById(R.id.trainingImage);
         }
     }
