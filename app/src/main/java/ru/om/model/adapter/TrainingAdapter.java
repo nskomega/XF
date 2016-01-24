@@ -4,12 +4,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import ru.om.R;
 import ru.om.model.pojo.Training;
+import ru.om.model.utilities.Constants;
 
 public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder> {
 
@@ -41,8 +45,7 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
         holder.mTitle.setText(currentTraining.mTitle);
         holder.mText.setText(currentTraining.mText);
         holder.mUrl.setText("https://www.youtube.com/watch?v=" + currentTraining.mUrl);
-
-        //Picasso.with(holder.itemView.getContext()).load(Constants.PHOTO_URL + currentTraining.mPhoto).into(holder.mImage);
+        Picasso.with(holder.itemView.getContext()).load(Constants.PHOTO_URL_1 + currentTraining.mUrl + Constants.PHOTO_URL_2).into(holder.mImage);
     }
 
     @Override
@@ -53,15 +56,14 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
     public class Holder extends RecyclerView.ViewHolder {
 
         public TextView mTitle, mText, mUrl;
-        //public ImageView mImage;
+        public ImageView mImage;
 
         public Holder(View itemView) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.trainingTitle);
             mText = (TextView) itemView.findViewById(R.id.trainingText);
             mUrl = (TextView) itemView.findViewById(R.id.trainingUrl);
-
-            //mImage = (ImageView) itemView.findViewById(R.id.flowerImage);
+            mImage = (ImageView) itemView.findViewById(R.id.trainingImage);
         }
     }
 }

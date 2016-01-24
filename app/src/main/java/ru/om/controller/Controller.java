@@ -38,11 +38,10 @@ public class Controller {
                         JSONObject object = array.getJSONObject(i);
 
                         Training training = new Training.Builder()
-                                .setTitle(object.getString("status"))
+                                .setTitle(object.getString("title"))
                                 .setText(object.getString("text"))
                                 .setUrl(object.getString("v"))
-
-                                        //.setPhoto(object.getString("photo"))
+                                .setPhoto(object.getString("v"))
                                 .build();
 
                         mListener.onFetchProgress(training);

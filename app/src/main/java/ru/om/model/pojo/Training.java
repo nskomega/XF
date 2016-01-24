@@ -8,8 +8,7 @@ public class Training {
         mUrl = builder.mUrl;
         mText = builder.mText;
         mTitle = builder.mTitle;
-
-        //mPhoto = builder.mPhoto;
+        mPhoto = builder.mPhoto;
     }
 
     public static class Builder {
@@ -26,10 +25,10 @@ public class Training {
             return Builder.this;
         }
 
-        // public Builder setPhoto(String photo) {
-        //     mPhoto = photo;
-        //     return Builder.this;
-        //  }
+        public Builder setPhoto(String photo) {
+            mPhoto = photo;
+            return Builder.this;
+        }
 
         public Builder setTitle(String title) {
             mTitle = title;

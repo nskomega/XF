@@ -5,6 +5,6 @@ import retrofit.http.GET;
 
 public interface TrainingApi {
 
-    @GET("/api/videos.json")
+    @GET("/training.htm")
     void getTraining(Callback<String> flowers);
 }
