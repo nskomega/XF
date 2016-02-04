@@ -21,7 +21,6 @@ import ru.om.model.utilities.Constants;
 
 public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder> {
 
-    public static String TAG = TrainingAdapter.class.getSimpleName();
     private static Context context;
     public String nUrl;
     private List<Training> mTrainings;
@@ -47,7 +46,6 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
         Training currentTraining = mTrainings.get(position);
         holder.mTitle.setText(currentTraining.mTitle);
         holder.mText.setText(currentTraining.mText);
-        //holder.mUrl.setText(Constants.YOUTUBE_URL + currentTraining.mUrl);
         Picasso.with(holder.itemView.getContext()).load(Constants.PHOTO_URL_1 + currentTraining.mUrl + Constants.PHOTO_URL_2).into(holder.mImage);
         nUrl = currentTraining.mUrl;
     }
@@ -58,14 +56,13 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
     }
 
     public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView mTitle, mText, mUrl;
+        public TextView mTitle, mText;
         public ImageView mImage;
 
         public Holder(View itemView) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.trainingTitle);
             mText = (TextView) itemView.findViewById(R.id.trainingText);
-            //mUrl = (TextView) itemView.findViewById(R.id.trainingUrl);
             mImage = (ImageView) itemView.findViewById(R.id.trainingImage);
             itemView.setOnClickListener(this);
         }
@@ -77,30 +74,8 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
                 public void run() {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + nUrl));
                     context.startActivity(intent);
-                    //newYouTubeIntent(context1, nUrl);
                 }
             }, 0);
         }
     }
-
-
-    /**
-     public static Intent newYouTubeIntent(PackageManager pm, String url) {
-     Intent intent;
-     if (url.length() == 11) {
-     // youtube video id
-     intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + url));
-     } else {
-     // url to video
-     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-     }
-     try {
-     if (pm.getPackageInfo("com.google.android.youtube", 0) != null) {
-     intent.setPackage("com.google.android.youtube");
-     }
-     } catch (PackageManager.NameNotFoundException e) {
-     }
-     return intent;
-    }
-     */
 }

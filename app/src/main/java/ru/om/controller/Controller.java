@@ -63,11 +63,8 @@ public class Controller {
     }
 
     public interface TrainingCallbackListener {
-        void onFetchStart();
 
         void onFetchProgress(Training training);
-
-        void onFetchProgress(List<Training> trainingList);
 
         void onFetchComplete();
 

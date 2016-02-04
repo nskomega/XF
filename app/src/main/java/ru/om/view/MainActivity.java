@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
         mController = new Controller(MainActivity.this);
         configViews();
         mController.startFetching();
-
     }
 
     private void configToolbar() {
@@ -87,18 +86,6 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Progs(1000);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Progs(1000);
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -116,18 +103,8 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
     }
 
     @Override
-    public void onFetchStart() {
-
-    }
-
-    @Override
     public void onFetchProgress(Training training) {
         mTrainingAdapter.addTraining(training);
-    }
-
-    @Override
-    public void onFetchProgress(List<Training> trainingList) {
-
     }
 
     @Override
@@ -137,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements Controller.Traini
 
     @Override
     public void onFetchFailed() {
-
     }
 }
 
