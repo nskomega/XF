@@ -16,11 +16,13 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import ru.om.R;
+import ru.om.controller.Controller;
 import ru.om.model.pojo.Training;
 import ru.om.model.utilities.Constants;
 
 public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder> {
 
+    private static final String TAG = Controller.class.getSimpleName();
     private static Context context;
     public String nUrl;
     private List<Training> mTrainings;
@@ -73,7 +75,12 @@ public class TrainingAdapter extends RecyclerView.Adapter<TrainingAdapter.Holder
                 @Override
                 public void run() {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + nUrl));
-                    context.startActivity(intent);
+                    try {
+                        context.startActivity(intent);
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Intent intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.YOUTUBE + nUrl));
+                        context.startActivity(intent2);
+                    }
                 }
             }, 0);
         }
